@@ -8,7 +8,7 @@ namespace NuGetGallery
 {
     public static class ScopeEvaluator
     {
-        public static bool HasScopeThatAllowsActionForSubject(
+        public static bool ScopeClaimsAllowsActionForSubject(
             string scopeClaim,
             string subject,
             string[] requestedActions)
