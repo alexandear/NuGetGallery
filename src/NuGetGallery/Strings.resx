@@ -401,4 +401,19 @@ The {1} Team</value>
   <data name="ApiKeyAlsoUpdated" xml:space="preserve">
     <value>Note that your API key has also been updated.</value>
   </data>
+  <data name="ScopeDescription_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ScopeDescription_PushNewPackageRegistration" xml:space="preserve">
+    <value>Push new package registration</value>
+  </data>
+  <data name="ScopeDescription_PushPackageVersion" xml:space="preserve">
+    <value>Push package version</value>
+  </data>
+  <data name="ScopeDescription_ListUnlistPackage" xml:space="preserve">
+    <value>List/unlist package</value>
+  </data>
+  <data name="ScopeDescription_Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
 </root>
