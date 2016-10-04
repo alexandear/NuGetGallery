@@ -18,6 +18,8 @@ namespace NuGetGallery
 {
     public class UsersControllerFacts
     {
+        public static readonly int CredentialKey = 123;
+
         public class TheAccountAction : TestContainer
         {
             [Fact]
@@ -962,11 +964,12 @@ namespace NuGetGallery
                 // Act
                 var result = await controller.RegenerateCredential(
                     credentialType: cred.Type,
-                    credentialKey: 123);
+                    credentialKey: CredentialKey);
 
                 // Assert
                 ResultAssert.IsRedirectToRoute(result, new { action = "Account" });
                 Assert.Equal(1, user.Credentials.Count);
+                Assert.True(user.Credentials.Contains(cred));
             }
 
             [Fact]
@@ -977,7 +980,7 @@ namespace NuGetGallery
                 var user = fakes.CreateUser("test",
                     new CredentialBuilder().CreateApiKey(TimeSpan.FromHours(1)));
                 var cred = user.Credentials.First();
-                cred.Key = 123;
+                cred.Key = CredentialKey;
 
                 GetMock<AuthenticationService>()
                     .Setup(u => u.AddCredential(
@@ -997,7 +1000,7 @@ namespace NuGetGallery
                 // Act
                 var result = await controller.RegenerateCredential(
                     credentialType: cred.Type,
-                    credentialKey: 123);
+                    credentialKey: CredentialKey);
 
                 // Assert
                 ResultAssert.IsRedirectToRoute(result, new { action = "Account" });
@@ -1023,7 +1026,7 @@ namespace NuGetGallery
                 // Act
                 var result = await controller.ExpireCredential(
                     credentialType: cred.Type,
-                    credentialKey: 123);
+                    credentialKey: CredentialKey);
 
                 // Assert
                 ResultAssert.IsRedirectToRoute(result, new { action = "Account" });
@@ -1038,7 +1041,7 @@ namespace NuGetGallery
                 var user = fakes.CreateUser("test",
                     new CredentialBuilder().CreateApiKey(TimeSpan.FromHours(1)));
                 var cred = user.Credentials.First();
-                cred.Key = 123;
+                cred.Key = CredentialKey;
 
                 GetMock<AuthenticationService>()
                     .Setup(a => a.ExpireCredential(user, cred))
@@ -1051,7 +1054,7 @@ namespace NuGetGallery
                 // Act
                 var result = await controller.ExpireCredential(
                     credentialType: cred.Type,
-                    credentialKey: 123);
+                    credentialKey: CredentialKey);
 
                 // Assert
                 ResultAssert.IsRedirectToRoute(result, new { action = "Account" });
